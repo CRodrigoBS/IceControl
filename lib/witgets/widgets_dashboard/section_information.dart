@@ -19,7 +19,7 @@ class SectionInformation extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Funciones",
+              "Vista de flujo",
               style: Theme.of(context).textTheme.titleMedium,
             ),
             ElevatedButton.icon(

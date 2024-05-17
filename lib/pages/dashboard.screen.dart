@@ -3,7 +3,6 @@ import 'package:ice_control/responsive.dart';
 import 'package:ice_control/witgets/widgets_dashboard/header.dart';
 import 'package:ice_control/witgets/widgets_dashboard/section_information.dart';
 import 'package:ice_control/witgets/widgets_dashboard/storage_details.dart';
-import 'package:ice_control/witgets/widgets_dashboard/table_info.dart';
 import '../../constants.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -28,7 +27,6 @@ class DashboardScreen extends StatelessWidget {
                     children: [
                       const SectionInformation(),
                       const SizedBox(height: defaultPadding),
-                      const RecentFiles(),
                       if (Responsive.isMobile(context))
                         const SizedBox(height: defaultPadding),
                       if (Responsive.isMobile(context)) const StorageDetails(),

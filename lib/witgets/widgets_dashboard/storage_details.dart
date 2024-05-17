@@ -19,9 +19,9 @@ class StorageDetails extends StatelessWidget {
       ),
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children:  [
           Text(
-            "Detalles de refrigeradores",
+            "Detalles del flujo",
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
@@ -32,16 +32,12 @@ class StorageDetails extends StatelessWidget {
 
           StorageInfoCard(
             svgSrc: "assets/icons/Documents.svg",
-            title: "01 Refrigerator",
+            title: "Guardar datos",
           ),
           StorageInfoCard(
             svgSrc: "assets/icons/media.svg",
-            title: "Temperatura",
+            title: "Historial",
           ),
-          // StorageInfoCard(
-          //   svgSrc: "assets/icons/folder.svg",
-          //   title: "Alarma",
-          // ),
           StorageInfoCard(
             svgSrc: "assets/icons/unknown.svg",
             title: "Descargar PDF ",

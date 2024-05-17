@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ice_control/models/models_info_cards.dart';
 import '../../../constants.dart';
 
@@ -22,51 +21,23 @@ class FileInfoCard extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(defaultPadding * 0.75),
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  color: info.color!.withOpacity(0.1),
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                ),
-                child: SvgPicture.asset(
-                  info.svgSrc!,
-                  colorFilter: ColorFilter.mode(
-                      info.color ?? Colors.black, BlendMode.srcIn),
-                ),
-              ),
-              const Icon(Icons.more_vert, color: Colors.white54)
-            ],
-          ),
           Text(
             info.title!,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          ProgressLine(
-            color: info.color,
-            percentage: info.percentage,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "${info.numOfFiles} Files",
-                style:
-                Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white70),
-              ),
-              Text(
-                info.totalStorage!,
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white),
-              ),
-            ],
+
+          Text(
+            "${info.count}",
+            textAlign: TextAlign.center, // Centra el texto
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontSize: 30, // Tamaño de la fuente
+              fontWeight: FontWeight.bold, // Texto en negrita
+            ),
           )
         ],
       ),
