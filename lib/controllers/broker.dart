@@ -1,13 +1,14 @@
 // broker.dart
-// ignore: depend_on_referenced_packages
 import 'package:mqtt_client/mqtt_client.dart';
-// ignore: depend_on_referenced_packages
 import 'package:mqtt_client/mqtt_server_client.dart';
+import '../providers/data_broker.dart'; // Importa el MQTTData Provider
+import 'dart:convert';
+
 
 class MQTTClientWrapper {
   MqttServerClient? _client;
 
-  Future<void> initializeMQTTClient() async {
+  Future<void> initializeMQTTClient(MQTTData mqttData) async {
     _client = MqttServerClient('161.132.38.243', 'flutter_client');
     _client!.port = 1883;
     _client!.keepAlivePeriod = 60;
@@ -42,8 +43,18 @@ class MQTTClientWrapper {
 
     _client!.updates!.listen((List<MqttReceivedMessage<MqttMessage>> c) {
       final MqttPublishMessage recMess = c[0].payload as MqttPublishMessage;
-      final String pt = MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
-      print('Received message: $pt from topic: ${c[0].topic}');
+      final String payload = MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
+      final Map<String, dynamic> data = jsonDecode(payload);
+      print('Received message: $data from topic: ${c[0].topic}');
+
+      // Actualizar el MQTTData Provider con los datos recibidos del broker
+      mqttData.updateData(
+        id: data['id'] ?? '',
+        cmd: data['cmd'] ?? '',
+        contIn: data['contIn'] ?? '',
+        contOut: data['contOut'] ?? '',
+        date: data['date'] ?? '',
+      );
     });
   }
 
