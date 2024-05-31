@@ -16,7 +16,7 @@ class DashboardScreen extends StatelessWidget {
         padding: const EdgeInsets.all(defaultPadding),
         child: Column(
           children: [
-            const Header(),
+            //const Header(), el archivo header afuera por el  momento 
             const SizedBox(height: defaultPadding),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,7 +25,7 @@ class DashboardScreen extends StatelessWidget {
                   flex: 5,
                   child: Column(
                     children: [
-                      const SectionInformation(),
+                        const SectionInformation(), // aqui estan los cuadros , principal 
                       const SizedBox(height: defaultPadding),
                       if (Responsive.isMobile(context))
                         const SizedBox(height: defaultPadding),
@@ -37,10 +37,10 @@ class DashboardScreen extends StatelessWidget {
                   const SizedBox(width: defaultPadding),
                 // On Mobile means if the screen is less than 850 we don't want to show it
                 if (!Responsive.isMobile(context))
-                const Expanded(
-                  flex: 2,
-                  child: StorageDetails(),
-                ),
+                  const Expanded(
+                    flex: 2,
+                   child: StorageDetails(),
+                  ),
               ],
             )
           ],

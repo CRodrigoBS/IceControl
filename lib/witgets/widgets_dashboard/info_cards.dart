@@ -1,16 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:ice_control/models/models_info_cards.dart';
 import '../../../constants.dart';
-
-//Cartas de información
-
-class FileInfoCard extends StatelessWidget {
+import 'dart:async'; // Importa la librería de Timer
+import 'chart.dart';
+class FileInfoCard extends StatefulWidget {
   const FileInfoCard({
     Key? key,
     required this.info,
+    
+    
   }) : super(key: key);
 
   final CloudStorageInfo info;
+
+  @override
+  _FileInfoCardState createState() => _FileInfoCardState();
+}
+
+class _FileInfoCardState extends State<FileInfoCard> {
+  int entrada = 0;
+  int salida = 0;
+  int total = 0; // Inicializa total con 0
+
+  @override
+  void initState() {
+    super.initState();
+    startSimulation();
+  }
+
+  void startSimulation() {
+    Timer.periodic(Duration(seconds: 3), (timer) {
+      setState(() {
+        entrada++;
+        updateTotal();
+      });
+    });
+
+    Timer.periodic(Duration(seconds: 15), (timer) {
+      setState(() {
+        salida=salida+2;
+        updateTotal();
+      });
+    });
+  }
+
+  void updateTotal() {
+    total = entrada - salida;
+    DataHandler.updateData(total, entrada, salida);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +62,13 @@ class FileInfoCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            info.title!,
+            widget.info.title!,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
 
           Text(
-            "${info.count}",
+            "$total",
             textAlign: TextAlign.center, // Centra el texto
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(

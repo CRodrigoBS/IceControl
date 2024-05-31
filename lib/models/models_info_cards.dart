@@ -12,6 +12,18 @@ class CloudStorageInfo {
   });
 }
 
+class CloudStorageInfo2{
+  final String? title;
+  final int? count;
+  final Color? color;
+
+  CloudStorageInfo2({
+    this.title,
+    this.count,
+    this.color,
+  });
+}
+
 List demoMyFiles = [
   CloudStorageInfo(
     title: "Personas en el mall",
@@ -19,14 +31,8 @@ List demoMyFiles = [
   ),
   CloudStorageInfo(
     title: "Puerta 1",
-    count: 30
+    count:20
   ),
-  CloudStorageInfo(
-    title: "Puerta 2",
-    count: 20
-  ),
-  CloudStorageInfo(
-    title: "Puerta 3",
-    count: 29
-  ),
+  
+  
 ];
